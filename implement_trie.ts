@@ -16,6 +16,7 @@ export class Trie {
   }
 
   insert(word: string): void {
+    // O(l)
     let current = this.root;
     for (let index = 0; index < word.length; index++) {
       let charCode = word.charCodeAt(index);
@@ -27,7 +28,12 @@ export class Trie {
     current.is_end = true;
   }
 
+  // TC: O(nxl):
+  // SC: O(nxl):
+  // N = number of words
+  // L = max length of the word
   search(word: string): boolean {
+    // O(l)
     let current = this.root;
     for (let index = 0; index < word.length; index++) {
       if (current.children[word.charCodeAt(index) - this.charCodeOfA] == null)
@@ -38,6 +44,7 @@ export class Trie {
   }
 
   startsWith(prefix: string): boolean {
+    // O(l)
     let current = this.root;
     for (let index = 0; index < prefix.length; index++) {
       if (current.children[prefix.charCodeAt(index) - this.charCodeOfA] == null)
