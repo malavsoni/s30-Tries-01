@@ -16,17 +16,23 @@ function longestWord(words: string[]): string {
   return result;
 }
 
+// TC: n(log n) + o(n) +  2(nxl)
+// SC: o(nxl)
 function longestWord_with_trie(words: string[]): string {
   let result = "";
-
+  let trie = new Trie();
   // n(log n)
   words.sort();
 
-  let trie = new Trie();
+  for (let index = 0; index < words.length; index++) {
+    // O(n)
+    trie.insert(words[index]); // o(nxl)
+  }
 
-  for (let index = 0; index < words.length; index++) { // O(nxl)
+  for (let index = 0; index < words.length; index++) {
+    // O(nxl)
     let word = words[index];
-    trie.insert(word); // o(nxl)
+
     let current = trie.root;
     let count = 0;
     for (let i = 0; i < word.length; i++) {
